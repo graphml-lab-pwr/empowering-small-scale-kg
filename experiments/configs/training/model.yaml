@@ -1,0 +1,32 @@
+default: &default
+  optimizer: Adam
+  optimizer_kwargs: {}
+  model_kwargs: {}
+  training_kwargs: {}
+  training_loop: SLCWA
+  training_loop_kwargs: null
+  weight_method: null
+
+RotatE: &RotatE
+  <<: *default
+  model: RotatE
+  model_kwargs:
+    embedding_dim: 256
+  optimizer_kwargs:
+    lr: 0.004
+  loss: nssa
+  loss_kwargs:
+    adversarial_temperature: 0.34
+    margin: 9
+  training_kwargs:
+    num_epochs: 200
+    batch_size: 512
+  negative_sampler: basic
+  negative_sampler_kwargs:
+    num_negs_per_pos: 33
+
+WeightedRotatE: &WeightedRotatE
+  <<: *RotatE
+  weight_method: similarity
+  loss: weighted_nssa
+  training_loop: WeightedSLCWA

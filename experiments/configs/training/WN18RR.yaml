@@ -1,0 +1,64 @@
+training_default: &training_default
+  negative_sampler: basic
+  automatic_memory_optimization: false
+  lr_scheduler: null
+  lr_scheduler_kwargs: null
+
+default: &default
+  <<: *training_default
+  experiment_dir: data/experiments/
+  random_seed: [ 121371, 59211, 44185, 79709, 51612 ]
+  wandb_entity: "graph-ml-lab-wust"
+  wandb_project: "empowering-small-scale-kg"
+  training_kwargs:
+    num_workers: 0
+  evaluation_batch_size: 128
+  evaluation_frequency: 10
+
+# full
+
+WN18RR_full:
+  <<: *default
+  ds_dataset: WN18RR
+
+# TRIPLE
+
+WN18RR_triple_04:
+  <<: *default
+  ds_dataset: WN18RR_triple_04
+
+WN18RR_triple_06:
+  <<: *default
+  ds_dataset: WN18RR_triple_06
+
+WN18RR_triple_08:
+  <<: *default
+  ds_dataset: WN18RR_triple_08
+
+# RELATION
+
+WN18RR_relation_04:
+  <<: *default
+  ds_dataset: WN18RR_relation_04
+
+WN18RR_relation_06:
+  <<: *default
+  ds_dataset: WN18RR_relation_06
+
+WN18RR_relation_08:
+  <<: *default
+  ds_dataset: WN18RR_relation_08
+
+# NODE
+
+WN18RR_node_04:
+  <<: *default
+  ds_dataset: WN18RR_node_04
+
+WN18RR_node_06:
+  <<: *default
+  ds_dataset: WN18RR_node_06
+
+WN18RR_node_08:
+  <<: *default
+  ds_dataset: WN18RR_node_08

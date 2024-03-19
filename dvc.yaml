@@ -1,0 +1,152 @@
+stages:
+  extract_conceptnet_en:
+    # Extract the English part of ConceptNet.
+    cmd:  PYTHONPATH=. python experiments/scripts/utils/run_extraction_conceptnet_en.py
+    deps:
+      - experiments/scripts/utils/run_extraction_conceptnet_en.py
+      - data/external/datasets/conceptnet/original/conceptnet-assertions-5.7.0.csv.gz
+    outs:
+      - data/external/datasets/conceptnet/en
+
+  decode_WD50K:
+    # Decode the entities and relations of WD50K by retrieving the labels from wikidata api.
+    foreach:
+      - in: data/external/datasets/WD50K/wd50k/triples
+        out: data/external/datasets/WD50K_decoded/wd50k
+    do:
+      cmd: PYTHONPATH=. python experiments/scripts/utils/run_WD50K_decoding.py  ${item.in} ${item.out}
+      deps:
+        - experiments/scripts/utils/run_WD50K_decoding.py
+        - ${item.in}
+      outs:
+        - ${item.out}
+
+  generate_combined_training_items:
+    # Generate the items used in experiments/configs/training/dvc.yaml for the combined
+    # training (DKG with linked GKG).
+    foreach:
+      - WN18RR
+      - weighted_WN18RR
+      - FB15K237_FB15K237
+      - WD50K_WD50K
+      - sampled_WD50K_FB15K237
+      - sampled_WN18RR_FB15K237
+      - sampled_WN18RR_ConceptNet
+      - sampled_WD50K_YAGO
+      - sampled_FB15K237_ConceptNet
+      - sampled_FB15K237_YAGO
+    do:
+      cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+        --generation-config-key ${item}
+        --output-path experiments/configs/training/training_items/${item}_combined.yaml
+      deps:
+        - experiments/scripts/generate_combined_training_items.py
+      params:
+        - experiments/configs/training/generation_config_combined_training_items.yaml:
+            - ${item}
+      outs:
+        - experiments/configs/training/training_items/${item}_combined.yaml:
+            cache: false
+
+  generate_standard_training_items:
+    # Generate the items used in experiments/configs/training/dvc.yaml for the standard
+    # training (only DKG).
+    foreach:
+      - WN18RR
+      - FB15K237
+      - WD50K
+    do:
+      cmd: PYTHONPATH=. python experiments/scripts/generate_standard_training_items.py
+        --generation-config-key ${item}
+        --output-path experiments/configs/training/training_items/${item}_standard.yaml
+      deps:
+        - experiments/scripts/generate_standard_training_items.py
+      params:
+        - experiments/configs/training/generation_config_standard_training_items.yaml:
+            - ${item}
+      outs:
+        - experiments/configs/training/training_items/${item}_standard.yaml:
+            cache: false
+
+  sample_dataset:
+    # Generate the sampled datasets used in the experiments.
+    foreach:
+      - WN18RR_node_04
+      - WN18RR_node_06
+      - WN18RR_node_08
+      - WN18RR_relation_04
+      - WN18RR_relation_06
+      - WN18RR_relation_08
+      - WN18RR_triple_04
+      - WN18RR_triple_06
+      - WN18RR_triple_08
+      - FB15K237_relation_04
+      - FB15K237_relation_06
+      - FB15K237_relation_08
+      - FB15K237_triple_04
+      - FB15K237_triple_06
+      - FB15K237_triple_08
+      - WD50K_node_08
+      - WD50K_relation_04
+      - WD50K_relation_06
+      - WD50K_relation_08
+      - WD50K_triple_04
+      - WD50K_triple_06
+      - WD50K_triple_08
+    do:
+      cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py ${item} 
+        --seeds 121371 --seeds 59211 --seeds 44185
+      deps:
+        - experiments/scripts/sample_dataset.py
+        - data/external/datasets/WN18RR
+        - data/external/datasets/FB15k-237
+        - data/external/datasets/WD50K_decoded/wd50k
+      outs:
+        - data/sampled_datasets/${item}
+
+  download_experiment_results:
+    # Download the results of the experiments from the WandB project.
+    cmd: PYTHONPATH=. python experiments/scripts/utils/run_results_download.py 
+      --project "graph-ml-lab-wust/empowering-small-scale-kg"
+    deps:
+      - experiments/scripts/utils/run_results_download.py
+    outs:
+      - data/experiments_results/results.pkl
+
+  generate_paper_plots:
+    # Generate the plots used in the paper.
+    cmd: papermill experiments/notebooks/4_analyse_experiments.ipynb data/notebooks/4_analyse_experiments.ipynb
+    deps:
+      - experiments/notebooks/4_analyse_experiments.ipynb
+      - data/experiments_results/results.pkl
+    outs:
+      - data/notebooks/4_analyse_experiments.ipynb
+      - data/plots/experiment_analysis
+
+  generate_paper_plots_loss:
+    # Generate the plots used in the paper for the loss analysis.
+    cmd: papermill experiments/notebooks/10_loss.ipynb data/notebooks/10_loss.ipynb
+    deps:
+      - experiments/notebooks/10_loss.ipynb
+      - data/experiments/WN18RR
+      - data/experiments/WD50K
+      - data/experiments/FB15K237
+    outs:
+      - data/notebooks/10_loss.ipynb
+      - data/plots/loss_analysis
+
+  execute_notebook_dataset_stats:
+    # Generate the analysis used in the paper.
+    cmd: papermill experiments/notebooks/2_dataset_stats.ipynb data/notebooks/2_dataset_stats.ipynb
+    deps:
+      - experiments/notebooks/2_dataset_stats.ipynb
+    outs:
+      - data/notebooks/2_dataset_stats.ipynb
+
+  execute_notebook_ablation_concatenation:
+    # Generate the analysis used in the paper.
+    cmd: papermill experiments/notebooks/14_ablation_concatenation.ipynb data/notebooks/14_ablation_concatenation.ipynb
+    deps:
+      - experiments/notebooks/14_ablation_concatenation.ipynb
+    outs:
+      - data/notebooks/14_ablation_concatenation.ipynb

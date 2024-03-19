@@ -1,0 +1,63 @@
+training_default: &training_default
+  negative_sampler: basic
+  automatic_memory_optimization: false
+  lr_scheduler: null
+  lr_scheduler_kwargs: null
+
+default: &default
+  <<: *training_default
+  experiment_dir: data/experiments/
+  repeats: 3
+  random_seed: [ 121371, 59211, 44185, 79709, 51612 ]
+  wandb_entity: "graph-ml-lab-wust"
+  wandb_project: "empowering-small-scale-kg"
+  training_kwargs:
+    num_workers: 0
+  evaluation_batch_size: 128
+  evaluation_frequency: 100
+
+WD50K_full:
+  <<: *default
+  ds_dataset: WD50K
+
+# TRIPLE
+
+WD50K_triple_04:
+  <<: *default
+  ds_dataset: WD50K_triple_04
+
+WD50K_triple_06:
+  <<: *default
+  ds_dataset: WD50K_triple_06
+
+WD50K_triple_08:
+  <<: *default
+  ds_dataset: WD50K_triple_08
+
+# RELATION
+
+WD50K_relation_04:
+  <<: *default
+  ds_dataset: WD50K_relation_04
+
+WD50K_relation_06:
+  <<: *default
+  ds_dataset: WD50K_relation_06
+
+WD50K_relation_08:
+  <<: *default
+  ds_dataset: WD50K_relation_08
+
+# NODE
+
+WD50K_node_04:
+  <<: *default
+  ds_dataset: WD50K_node_04
+
+WD50K_node_06:
+  <<: *default
+  ds_dataset: WD50K_node_06
+
+WD50K_node_08:
+  <<: *default
+  ds_dataset: WD50K_node_08

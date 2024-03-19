@@ -1,0 +1,63 @@
+default: &default
+  gk_dataset: null
+  crop_gk_n: null
+  repeats: 3
+
+WN18RR: &WN18RR
+  <<: *default
+  gk_dataset: WN18RR
+  crop_gk_n: null
+
+ConceptNet_c1: &ConceptNet_c1
+  <<: *default
+  gk_dataset: ConceptNet
+  crop_gk_n: 1
+  repeats: 1
+
+ConceptNet_c2: &ConceptNet_c2
+  <<: *default
+  gk_dataset: ConceptNet
+  crop_gk_n: 2
+  repeats: 1
+
+FB15K237: &FB15K237
+  <<: *default
+  gk_dataset: FB15K237
+  crop_gk_n: null
+  repeats: 1
+
+FB15K237_c1: &FB15K237_c1
+  <<: *default
+  gk_dataset: FB15K237
+  crop_gk_n: 1
+  repeats: 1
+
+FB15K237_c2: &FB15K237_c2
+  <<: *default
+  gk_dataset: FB15K237
+  crop_gk_n: 2
+  repeats: 1
+
+YAGO310: &YAGO310
+  <<: *default
+  gk_dataset: YAGO310
+  crop_gk_n: null
+  repeats: 1
+
+YAGO310_c1: &YAGO310_c1
+  <<: *default
+  gk_dataset: YAGO310
+  crop_gk_n: 1
+  repeats: 1
+
+YAGO310_c2: &YAGO310_c2
+  <<: *default
+  gk_dataset: YAGO310
+  crop_gk_n: 2
+  repeats: 1
+
+WD50K: &WD50K
+    <<: *default
+    gk_dataset: WD50K
+    crop_gk_n: null
+    repeats: 3

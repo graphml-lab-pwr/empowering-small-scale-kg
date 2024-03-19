@@ -1,0 +1,461 @@
+# This file contains the DVC pipeline for all experiments.
+
+vars:
+  - training_items/WN18RR_standard.yaml
+  - training_items/FB15K237_standard.yaml
+  - training_items/WN18RR_combined.yaml
+  - training_items/weighted_WN18RR_combined.yaml
+  - training_items/FB15K237_FB15K237_combined.yaml
+  - training_items/WD50K_standard.yaml
+  - training_items/WD50K_WD50K_combined.yaml
+  - training_items/sampled_WD50K_FB15K237_combined.yaml
+  - training_items/sampled_WN18RR_ConceptNet_combined.yaml
+  - training_items/sampled_WN18RR_FB15K237_combined.yaml
+  - training_items/sampled_WD50K_YAGO_combined.yaml
+  - training_items/sampled_FB15K237_ConceptNet_combined.yaml
+  - training_items/sampled_FB15K237_YAGO_combined.yaml
+stages:
+  train_combined_WN18RR:
+    foreach: ${WN18RR_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/WN18RR
+        - data/sampled_datasets/${item.ds_dataset_config_key}
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/samplers/random_node_sampler.py
+        - mgi/samplers/random_relation_sampler.py
+        - mgi/samplers/random_triple_sampler.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+  train_combined_weighted_WN18RR:
+    foreach: ${weighted_WN18RR_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/WN18RR
+        - data/sampled_datasets/${item.ds_dataset_config_key}
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/samplers/random_node_sampler.py
+        - mgi/samplers/random_relation_sampler.py
+        - mgi/samplers/random_triple_sampler.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+
+  train_standard:
+    foreach: ${standard_WN18RR_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_standard_training.py
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+      deps:
+        - data/external/datasets/WN18RR
+        - experiments/scripts/run_standard_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/samplers/random_node_sampler.py
+        - mgi/samplers/random_relation_sampler.py
+        - mgi/samplers/random_triple_sampler.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+      outs:
+        - data/experiments/nogk/${item.ds_dataset_config_key}/${item.model_config_key}/noalign/runs
+        - data/experiments/nogk/${item.ds_dataset_config_key}/${item.model_config_key}/noalign/config.yaml
+
+
+  train_standard_FB15K237:
+    foreach: ${standard_FB15K237_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_standard_training.py
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+      deps:
+        - data/external/datasets/FB15k-237
+        - experiments/scripts/run_standard_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/samplers/random_node_sampler.py
+        - mgi/samplers/random_relation_sampler.py
+        - mgi/samplers/random_triple_sampler.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+      outs:
+        - data/experiments/nogk/${item.ds_dataset_config_key}/${item.model_config_key}/noalign/runs
+        - data/experiments/nogk/${item.ds_dataset_config_key}/${item.model_config_key}/noalign/config.yaml
+
+  train_combined_FB15K237_FB15K237:
+    foreach: ${FB15K237_FB15K237_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/sampled_datasets/${item.ds_dataset_config_key}
+        - data/external/datasets/FB15k-237
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+  train_standard_WD50K:
+    foreach: ${standard_WD50K_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_standard_training.py
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+      deps:
+        - data/external/datasets/WD50K_decoded/wd50k
+        - experiments/scripts/run_standard_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/samplers/random_node_sampler.py
+        - mgi/samplers/random_relation_sampler.py
+        - mgi/samplers/random_triple_sampler.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+      outs:
+        - data/experiments/nogk/${item.ds_dataset_config_key}/${item.model_config_key}/noalign/runs
+        - data/experiments/nogk/${item.ds_dataset_config_key}/${item.model_config_key}/noalign/config.yaml
+
+  train_combined_WD50K_WD50K:
+    foreach: ${WD50K_WD50K_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/WD50K_decoded/wd50k
+        - data/sampled_datasets/${item.ds_dataset_config_key}
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+  train_combined_sampled_WD50K_FB15K237:
+    foreach: ${sampled_WD50K_FB15K237_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/WD50K_decoded/wd50k
+        - data/external/datasets/FB15k-237
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+  train_combined_sampled_WN18RR_FB15K237:
+    foreach: ${sampled_WN18RR_FB15K237_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/WN18RR
+        - data/external/datasets/FB15k-237
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+  train_combined_sampled_WN18RR_ConceptNet:
+    foreach: ${sampled_WN18RR_ConceptNet_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/conceptnet/en
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+  train_combined_sampled_WD50K_YAGO:
+    foreach: ${sampled_WD50K_YAGO_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/WD50K_decoded/wd50k
+        - data/external/datasets/YAGO3-10
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+  train_combined_sampled_FB15K237_ConceptNet:
+    foreach: ${sampled_FB15K237_ConceptNet_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/FB15k-237
+        - data/external/datasets/conceptnet/en
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml
+
+  train_combined_sampled_FB15K237_YAGO:
+    foreach: ${sampled_FB15K237_YAGO_combined_training_items}
+    do:
+      wdir: ../../..
+      cmd: PYTHONPATH=. python experiments/scripts/run_combined_training.py
+        --gk-dataset-config-path ${item.gk_dataset_config_path}
+        --gk-dataset-config-key ${item.gk_dataset_config_key}
+        --ds-dataset-config-path ${item.ds_dataset_config_path}
+        --ds-dataset-config-key ${item.ds_dataset_config_key}
+        --model-config-path ${item.model_config_path}
+        --model-config-key ${item.model_config_key}
+        --alignment-config-path ${item.alignment_config_path}
+        --alignment-config-key ${item.alignment_config_key}
+      deps:
+        - data/external/datasets/FB15k-237
+        - data/external/datasets/YAGO3-10
+        - experiments/scripts/run_combined_training.py
+        - mgi/training/training_pipeline.py
+        - mgi/mappings/similarity_embeddings.py
+        - mgi/mappings/nn_mapping.py
+        - mgi/mappings/alignment.py
+        - mgi/data/combined_datasets.py
+        - mgi/data/datasets/dataset_utils.py
+      params:
+        - ${item.gk_dataset_config_path}:
+            - ${item.gk_dataset_config_key}
+        - ${item.ds_dataset_config_path}:
+            - ${item.ds_dataset_config_key}
+        - ${item.model_config_path}:
+            - ${item.model_config_key}
+        - ${item.alignment_config_path}:
+            - ${item.alignment_config_key}
+      outs:
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/runs
+        - data/experiments/${item.gk_dataset_config_key}/${item.ds_dataset_config_key}/${item.model_config_key}/${item.alignment_config_key}/config.yaml

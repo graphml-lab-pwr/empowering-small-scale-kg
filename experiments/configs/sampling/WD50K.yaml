@@ -1,0 +1,48 @@
+WD50K: &WD50K
+  dataset: WD50K
+
+WD50K_triple: &WD50K_triple
+  <<: *WD50K
+  sampling: triple
+
+WD50K_relation: &WD50K_relation
+  <<: *WD50K
+  sampling: relation
+
+WD50K_node: &WD50K_node
+  <<: *WD50K
+  sampling: node
+
+# TRIPLE
+
+WD50K_triple_04:
+  <<: *WD50K_triple
+  p: 0.4
+
+WD50K_triple_06:
+  <<: *WD50K_triple
+  p: 0.6
+
+WD50K_triple_08:
+  <<: *WD50K_triple
+  p: 0.8
+
+# RELATION
+
+WD50K_relation_04:
+  <<: *WD50K_relation
+  p: 0.4
+
+WD50K_relation_06:
+  <<: *WD50K_relation
+  p: 0.6
+
+WD50K_relation_08:
+  <<: *WD50K_relation
+  p: 0.8
+
+# NODE
+
+WD50K_node_08:
+  <<: *WD50K_node
+  p: 0.8

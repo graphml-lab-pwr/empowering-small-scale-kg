@@ -1,0 +1,51 @@
+standard_WN18RR_training_items:
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_full
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_node_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_node_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_node_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WN18RR
+    ds_dataset_config_path: experiments/configs/training/WN18RR.yaml
+    ds_dataset_config_key: WN18RR_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE

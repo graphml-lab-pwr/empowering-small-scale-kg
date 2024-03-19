@@ -1,0 +1,56 @@
+WN18RR: &WN18RR
+  dataset: WN18RR
+
+WN18RR_triple: &WN18RR_triple
+  <<: *WN18RR
+  sampling: triple
+
+WN18RR_relation: &WN18RR_relation
+  <<: *WN18RR
+  sampling: relation
+
+WN18RR_node: &WN18RR_node
+  <<: *WN18RR
+  sampling: node
+
+# TRIPLE
+
+WN18RR_triple_04:
+  <<: *WN18RR_triple
+  p: 0.4
+
+WN18RR_triple_06:
+  <<: *WN18RR_triple
+  p: 0.6
+
+WN18RR_triple_08:
+  <<: *WN18RR_triple
+  p: 0.8
+
+# RELATION
+
+WN18RR_relation_04:
+  <<: *WN18RR_relation
+  p: 0.4
+
+WN18RR_relation_06:
+  <<: *WN18RR_relation
+  p: 0.6
+
+WN18RR_relation_08:
+  <<: *WN18RR_relation
+  p: 0.8
+
+# NODE
+
+WN18RR_node_04:
+  <<: *WN18RR_node
+  p: 0.4
+
+WN18RR_node_06:
+  <<: *WN18RR_node
+  p: 0.6
+
+WN18RR_node_08:
+  <<: *WN18RR_node
+  p: 0.8

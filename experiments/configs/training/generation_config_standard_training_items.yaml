@@ -1,0 +1,42 @@
+WN18RR:
+  gk_datasets: [ "WN18RR" ]
+  ds_datasets:
+    - 'WN18RR_full'
+    - 'WN18RR_node_04'
+    - 'WN18RR_node_06'
+    - 'WN18RR_node_08'
+    - 'WN18RR_relation_04'
+    - 'WN18RR_relation_06'
+    - 'WN18RR_relation_08'
+    - 'WN18RR_triple_04'
+    - 'WN18RR_triple_06'
+    - 'WN18RR_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+  models: [ "RotatE" ]
+
+FB15K237:
+  gk_datasets: [ "FB15K237" ]
+  ds_datasets:
+    - 'FB15K237_full'
+    - 'FB15K237_relation_04'
+    - 'FB15K237_relation_06'
+    - 'FB15K237_relation_08'
+    - 'FB15K237_triple_04'
+    - 'FB15K237_triple_06'
+    - 'FB15K237_triple_08'
+  ds_datasets_config_path: experiments/configs/training/FB15k237.yaml
+  models: [ "RotatE" ]
+
+WD50K:
+  gk_datasets: [ "WD50K" ]
+  ds_datasets:
+    - 'WD50K_full'
+    - 'WD50K_node_08'
+    - 'WD50K_relation_04'
+    - 'WD50K_relation_06'
+    - 'WD50K_relation_08'
+    - 'WD50K_triple_04'
+    - 'WD50K_triple_06'
+    - 'WD50K_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WD50K.yaml
+  models: [ "RotatE" ]

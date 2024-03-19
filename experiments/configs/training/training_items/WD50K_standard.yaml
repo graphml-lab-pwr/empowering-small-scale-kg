@@ -1,0 +1,41 @@
+standard_WD50K_training_items:
+  - gk_dataset_config_key: WD50K
+    ds_dataset_config_path: experiments/configs/training/WD50K.yaml
+    ds_dataset_config_key: WD50K_full
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WD50K
+    ds_dataset_config_path: experiments/configs/training/WD50K.yaml
+    ds_dataset_config_key: WD50K_node_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WD50K
+    ds_dataset_config_path: experiments/configs/training/WD50K.yaml
+    ds_dataset_config_key: WD50K_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WD50K
+    ds_dataset_config_path: experiments/configs/training/WD50K.yaml
+    ds_dataset_config_key: WD50K_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WD50K
+    ds_dataset_config_path: experiments/configs/training/WD50K.yaml
+    ds_dataset_config_key: WD50K_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WD50K
+    ds_dataset_config_path: experiments/configs/training/WD50K.yaml
+    ds_dataset_config_key: WD50K_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WD50K
+    ds_dataset_config_path: experiments/configs/training/WD50K.yaml
+    ds_dataset_config_key: WD50K_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: WD50K
+    ds_dataset_config_path: experiments/configs/training/WD50K.yaml
+    ds_dataset_config_key: WD50K_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE

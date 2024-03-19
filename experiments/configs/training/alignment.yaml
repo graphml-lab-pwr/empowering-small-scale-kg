@@ -1,0 +1,19 @@
+default: &default
+  model_kwargs: {}
+  mapping_metric: euclidean
+  vectorization: in_out_neighborhood
+
+k_1_extra_relation:
+  <<: *default
+  alignment_k: 1
+  combine_method: extra_relation
+
+k_2_extra_relation:
+  <<: *default
+  alignment_k: 2
+  combine_method: extra_relation
+
+k_3_extra_relation:
+  <<: *default
+  alignment_k: 3
+  combine_method: extra_relation

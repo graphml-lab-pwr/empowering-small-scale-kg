@@ -1,0 +1,5 @@
+outs:
+- md5: 791dde51b4451e6e46373c3d95247308.dir
+  size: 115571931
+  nfiles: 5
+  path: FB15k-237

@@ -1,0 +1,5 @@
+outs:
+- md5: 52ac4522c9a0912e11c48a1725f7c61b.dir
+  size: 51674862
+  nfiles: 3
+  path: YAGO3-10

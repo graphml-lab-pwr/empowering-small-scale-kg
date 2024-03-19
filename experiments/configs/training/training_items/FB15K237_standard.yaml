@@ -1,0 +1,36 @@
+standard_FB15K237_training_items:
+  - gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_full
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+  - gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE

@@ -1,0 +1,289 @@
+FB15K237_FB15K237_combined_training_items:
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_relation_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_04
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_06
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: RotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_1_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_2_extra_relation
+  - gk_dataset_config_path: experiments/configs/training/gk_datasets.yaml
+    gk_dataset_config_key: FB15K237
+    ds_dataset_config_path: experiments/configs/training/FB15k237.yaml
+    ds_dataset_config_key: FB15K237_triple_08
+    model_config_path: experiments/configs/training/model.yaml
+    model_config_key: WeightedRotatE
+    alignment_config_path: experiments/configs/training/alignment.yaml
+    alignment_config_key: k_3_extra_relation

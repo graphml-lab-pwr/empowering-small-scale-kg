@@ -1,0 +1,1012 @@
+schema: '2.0'
+stages:
+  extract_conceptnet_en:
+    cmd: PYTHONPATH=. python experiments/scripts/utils/run_extraction_conceptnet_en.py
+    deps:
+    - path: data/external/datasets/conceptnet/original/conceptnet-assertions-5.7.0.csv.gz
+      md5: 44365622fa268fa0ccab22c7b406459f
+      size: 497963447
+    - path: experiments/scripts/utils/run_extraction_conceptnet_en.py
+      md5: a48125f418d63c198040f494ce4dbd7f
+      size: 1599
+    outs:
+    - path: data/external/datasets/conceptnet/en
+      md5: 40b083fae539a96a344a0b15de2f41b0.dir
+      size: 171629884
+      nfiles: 3
+  generate_combined_training_items@weighted_WN18RR:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key weighted_WN18RR --output-path experiments/configs/training/training_items/weighted_WN18RR_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        weighted_WN18RR:
+          gk_datasets:
+          - WN18RR
+          ds_datasets:
+          - WN18RR_node_04
+          - WN18RR_node_06
+          - WN18RR_node_08
+          - WN18RR_relation_04
+          - WN18RR_relation_06
+          - WN18RR_relation_08
+          - WN18RR_triple_04
+          - WN18RR_triple_06
+          - WN18RR_triple_08
+          ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+          models:
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+          - k_2_extra_relation
+          - k_3_extra_relation
+    outs:
+    - path: experiments/configs/training/training_items/weighted_WN18RR_combined.yaml
+      md5: 19104281d6f44a63dad970c41bca69c7
+      size: 11840
+  generate_combined_training_items@WN18RR:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key WN18RR --output-path experiments/configs/training/training_items/WN18RR_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        WN18RR:
+          gk_datasets:
+          - WN18RR
+          ds_datasets:
+          - WN18RR_node_04
+          - WN18RR_node_06
+          - WN18RR_node_08
+          - WN18RR_relation_04
+          - WN18RR_relation_06
+          - WN18RR_relation_08
+          - WN18RR_triple_04
+          - WN18RR_triple_06
+          - WN18RR_triple_08
+          ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+          models:
+          - RotatE
+          alignments:
+          - k_1_extra_relation
+          - k_2_extra_relation
+          - k_3_extra_relation
+    outs:
+    - path: experiments/configs/training/training_items/WN18RR_combined.yaml
+      md5: 26f914a8bc754ad97489704260ba9fd5
+      size: 11615
+  generate_combined_training_items@FB15K237_FB15K237:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key FB15K237_FB15K237 --output-path experiments/configs/training/training_items/FB15K237_FB15K237_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        FB15K237_FB15K237:
+          gk_datasets:
+          - FB15K237
+          ds_datasets:
+          - FB15K237_relation_04
+          - FB15K237_relation_06
+          - FB15K237_relation_08
+          - FB15K237_triple_04
+          - FB15K237_triple_06
+          - FB15K237_triple_08
+          ds_datasets_config_path: experiments/configs/training/FB15k237.yaml
+          models:
+          - RotatE
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+          - k_2_extra_relation
+          - k_3_extra_relation
+    outs:
+    - path: experiments/configs/training/training_items/FB15K237_FB15K237_combined.yaml
+      md5: 1147834bc1ff44b3fb7900154c250b1a
+      size: 15883
+  generate_standard_training_items@FB15K237:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_standard_training_items.py
+      --generation-config-key FB15K237 --output-path experiments/configs/training/training_items/FB15K237_standard.yaml
+    deps:
+    - path: experiments/scripts/generate_standard_training_items.py
+      md5: 5e78617f960b4d732b295c30985bf3cf
+      size: 1477
+    params:
+      experiments/configs/training/generation_config_standard_training_items.yaml:
+        FB15K237:
+          gk_datasets:
+          - FB15K237
+          ds_datasets:
+          - FB15K237_full
+          - FB15K237_relation_04
+          - FB15K237_relation_06
+          - FB15K237_relation_08
+          - FB15K237_triple_04
+          - FB15K237_triple_06
+          - FB15K237_triple_08
+          ds_datasets_config_path: experiments/configs/training/FB15k237.yaml
+          models:
+          - RotatE
+    outs:
+    - path: experiments/configs/training/training_items/FB15K237_standard.yaml
+      md5: 9357cf803babf8c5fbe43313f286d0c9
+      size: 1750
+  generate_standard_training_items@WN18RR:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_standard_training_items.py
+      --generation-config-key WN18RR --output-path experiments/configs/training/training_items/WN18RR_standard.yaml
+    deps:
+    - path: experiments/scripts/generate_standard_training_items.py
+      md5: 5e78617f960b4d732b295c30985bf3cf
+      size: 1477
+    params:
+      experiments/configs/training/generation_config_standard_training_items.yaml:
+        WN18RR:
+          gk_datasets:
+          - WN18RR
+          ds_datasets:
+          - WN18RR_full
+          - WN18RR_node_04
+          - WN18RR_node_06
+          - WN18RR_node_08
+          - WN18RR_relation_04
+          - WN18RR_relation_06
+          - WN18RR_relation_08
+          - WN18RR_triple_04
+          - WN18RR_triple_06
+          - WN18RR_triple_08
+          ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+          models:
+          - RotatE
+    outs:
+    - path: experiments/configs/training/training_items/WN18RR_standard.yaml
+      md5: add2ec65ab8d104ecf8d31d880d00c57
+      size: 2417
+  decode_WD50K@0:
+    cmd: PYTHONPATH=. python experiments/scripts/utils/run_WD50K_decoding.py  data/external/datasets/WD50K/wd50k/triples
+      data/external/datasets/WD50K_decoded/wd50k
+    deps:
+    - path: data/external/datasets/WD50K/wd50k/triples
+      md5: a377106b28c37071bcf45ba2ed15dd86.dir
+      size: 4784992
+      nfiles: 3
+    - path: experiments/scripts/utils/run_WD50K_decoding.py
+      md5: 6eae1cf7880f763ab4109a6de9e68303
+      size: 2016
+    outs:
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+  generate_standard_training_items@WD50K:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_standard_training_items.py
+      --generation-config-key WD50K --output-path experiments/configs/training/training_items/WD50K_standard.yaml
+    deps:
+    - path: experiments/scripts/generate_standard_training_items.py
+      md5: 5e78617f960b4d732b295c30985bf3cf
+      size: 1477
+    params:
+      experiments/configs/training/generation_config_standard_training_items.yaml:
+        WD50K:
+          gk_datasets:
+          - WD50K
+          ds_datasets:
+          - WD50K_full
+          - WD50K_node_08
+          - WD50K_relation_04
+          - WD50K_relation_06
+          - WD50K_relation_08
+          - WD50K_triple_04
+          - WD50K_triple_06
+          - WD50K_triple_08
+          ds_datasets_config_path: experiments/configs/training/WD50K.yaml
+          models:
+          - RotatE
+    outs:
+    - path: experiments/configs/training/training_items/WD50K_standard.yaml
+      md5: b67f7691ac20d8797708c55a37082a7c
+      size: 1918
+  generate_combined_training_items@WD50K_WD50K:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key WD50K_WD50K --output-path experiments/configs/training/training_items/WD50K_WD50K_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        WD50K_WD50K:
+          gk_datasets:
+          - WD50K
+          ds_datasets:
+          - WD50K_node_08
+          - WD50K_relation_04
+          - WD50K_relation_06
+          - WD50K_relation_08
+          - WD50K_triple_04
+          - WD50K_triple_06
+          - WD50K_triple_08
+          ds_datasets_config_path: experiments/configs/training/WD50K.yaml
+          models:
+          - RotatE
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+          - k_2_extra_relation
+          - k_3_extra_relation
+    outs:
+    - path: experiments/configs/training/training_items/WD50K_WD50K_combined.yaml
+      md5: de776da3af486e2ba8fc30e5a1b6a5a3
+      size: 18121
+  sample_dataset@WN18RR_triple_06:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_triple_06
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_triple_06
+      md5: 4f78062765d26749ef042a49d1c504c7.dir
+      size: 8184276
+      nfiles: 9
+  sample_dataset@FB15K237_relation_06:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py FB15K237_relation_06
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/FB15K237_relation_06
+      md5: 1f803cf13a651a5c6ddc20ebf0f82292.dir
+      size: 39673687
+      nfiles: 9
+  sample_dataset@WN18RR_relation_06:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_relation_06
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_relation_06
+      md5: c0f8857750517ab92991b18d3e516f02.dir
+      size: 9255029
+      nfiles: 9
+  sample_dataset@WD50K_relation_08:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WD50K_relation_08
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WD50K_relation_08
+      md5: 9fd8739b43bad1f2dc58e6ff6cfe9c07.dir
+      size: 10455086
+      nfiles: 9
+  sample_dataset@WD50K_triple_08:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WD50K_triple_08
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WD50K_triple_08
+      md5: 2d85a1c2c2af95525783508fb07311a2.dir
+      size: 12208936
+      nfiles: 9
+  sample_dataset@WD50K_triple_06:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WD50K_triple_06
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WD50K_triple_06
+      md5: 11c34c9d4ed4aedc2b7f6ff0e2b61c86.dir
+      size: 10200226
+      nfiles: 9
+  sample_dataset@WN18RR_relation_04:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_relation_04
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_relation_04
+      md5: f1efbbeef006061d5e3f7f57aeb24ce7.dir
+      size: 3363406
+      nfiles: 9
+  sample_dataset@WN18RR_node_06:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_node_06
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_node_06
+      md5: cfba66ab9be8cb895c4ca2b7c5600fac.dir
+      size: 7448731
+      nfiles: 9
+  sample_dataset@WD50K_relation_04:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WD50K_relation_04
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WD50K_relation_04
+      md5: 699137802790d87b76ac8950d0d4ed5f.dir
+      size: 5461245
+      nfiles: 9
+  sample_dataset@FB15K237_triple_08:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py FB15K237_triple_08
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/FB15K237_triple_08
+      md5: 9c27be9426aa5420f442963b878f01d2.dir
+      size: 58725319
+      nfiles: 9
+  sample_dataset@WN18RR_node_04:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_node_04
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_node_04
+      md5: a47b6aa8fc72ef53cc3c5480854a6dc6.dir
+      size: 4934066
+      nfiles: 9
+  sample_dataset@FB15K237_relation_08:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py FB15K237_relation_08
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/FB15K237_relation_08
+      md5: 843cf7a72fcdb27f718bd09b01b70fe7.dir
+      size: 59185601
+      nfiles: 9
+  sample_dataset@WN18RR_triple_08:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_triple_08
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_triple_08
+      md5: a5e3a566ae185ca8dd9c1450ae03bd71.dir
+      size: 10639405
+      nfiles: 9
+  sample_dataset@FB15K237_triple_06:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py FB15K237_triple_06
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/FB15K237_triple_06
+      md5: f8eb51a7ef4a87a56039f0be2166aea5.dir
+      size: 46108036
+      nfiles: 9
+  sample_dataset@WD50K_node_08:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WD50K_node_08 --seeds
+      121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WD50K_node_08
+      md5: 01021959f8d7ea5a69f0f7ac35c47e13.dir
+      size: 13155920
+      nfiles: 9
+  sample_dataset@WD50K_triple_04:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WD50K_triple_04
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WD50K_triple_04
+      md5: 3b6028939a73f4f8eb62609f804db89c.dir
+      size: 8190558
+      nfiles: 9
+  sample_dataset@WD50K_relation_06:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WD50K_relation_06
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WD50K_relation_06
+      md5: 0be251a4a3f580f7821f4f7b431ae383.dir
+      size: 7637045
+      nfiles: 9
+  sample_dataset@FB15K237_triple_04:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py FB15K237_triple_04
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/FB15K237_triple_04
+      md5: 92482773ce7f525f65676bf4de17e6d4.dir
+      size: 33496877
+      nfiles: 9
+  sample_dataset@FB15K237_relation_04:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py FB15K237_relation_04
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/FB15K237_relation_04
+      md5: 54c307dde3ac6fab230057654c1ee4cc.dir
+      size: 26290997
+      nfiles: 9
+  sample_dataset@WN18RR_node_08:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_node_08
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_node_08
+      md5: 2bd0f9dec91a0b62f913dbe41e382998.dir
+      size: 10204005
+      nfiles: 9
+  sample_dataset@WN18RR_relation_08:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_relation_08
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_relation_08
+      md5: 70b40da02354d0af82c1d169f6774ec8.dir
+      size: 9857924
+      nfiles: 9
+  sample_dataset@WN18RR_triple_04:
+    cmd: PYTHONPATH=. python experiments/scripts/sample_dataset.py WN18RR_triple_04
+      --seeds 121371 --seeds 59211 --seeds 44185
+    deps:
+    - path: data/external/datasets/FB15k-237
+      md5: 791dde51b4451e6e46373c3d95247308.dir
+      size: 115571931
+      nfiles: 5
+    - path: data/external/datasets/WD50K_decoded/wd50k
+      md5: 8a48792ff66bd93f84176e4104b92319.dir
+      size: 6103417
+      nfiles: 4
+    - path: data/external/datasets/WN18RR
+      md5: a92358267bf5fdeca2ee6d7c00bbb928.dir
+      size: 7741432
+      nfiles: 7
+    - path: experiments/scripts/sample_dataset.py
+      md5: e35554e3d35acb381cf9c84942a6d4cf
+      size: 1403
+    outs:
+    - path: data/sampled_datasets/WN18RR_triple_04
+      md5: 2b548bde465d8ff5840e94afb9357437.dir
+      size: 5739069
+      nfiles: 9
+  generate_combined_training_items@sampled_WN18RR_FB15K237:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key sampled_WN18RR_FB15K237 --output-path 
+      experiments/configs/training/training_items/sampled_WN18RR_FB15K237_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        sampled_WN18RR_FB15K237:
+          gk_datasets:
+          - FB15K237
+          ds_datasets:
+          - WN18RR_triple_04
+          - WN18RR_triple_06
+          - WN18RR_triple_08
+          ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+          models:
+          - RotatE
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+    outs:
+    - path: 
+        experiments/configs/training/training_items/sampled_WN18RR_FB15K237_combined.yaml
+      md5: 58ae67e26aa93f07ece24753c07b1d4c
+      size: 2659
+  generate_combined_training_items@sampled_WD50K_FB15K237:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key sampled_WD50K_FB15K237 --output-path experiments/configs/training/training_items/sampled_WD50K_FB15K237_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        sampled_WD50K_FB15K237:
+          gk_datasets:
+          - FB15K237
+          - FB15K237_c1
+          ds_datasets:
+          - WD50K_triple_04
+          - WD50K_triple_06
+          - WD50K_triple_08
+          ds_datasets_config_path: experiments/configs/training/WD50K.yaml
+          models:
+          - RotatE
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+    outs:
+    - path: experiments/configs/training/training_items/sampled_WD50K_FB15K237_combined.yaml
+      md5: 96580422f2bd2776f288b240b1ab3545
+      size: 5262
+  generate_combined_training_items@sampled_WN18RR_ConceptNet:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key sampled_WN18RR_ConceptNet --output-path 
+      experiments/configs/training/training_items/sampled_WN18RR_ConceptNet_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        sampled_WN18RR_ConceptNet:
+          gk_datasets:
+          - ConceptNet_c1
+          ds_datasets:
+          - WN18RR_triple_04
+          - WN18RR_triple_06
+          - WN18RR_triple_08
+          ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+          models:
+          - RotatE
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+    outs:
+    - path: 
+        experiments/configs/training/training_items/sampled_WN18RR_ConceptNet_combined.yaml
+      md5: 8edd4265a68eb75c4ec6293c4de71a70
+      size: 2691
+  generate_combined_training_items@sampled_WD50K_YAGO:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key sampled_WD50K_YAGO --output-path experiments/configs/training/training_items/sampled_WD50K_YAGO_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        sampled_WD50K_YAGO:
+          gk_datasets:
+          - YAGO310_c1
+          ds_datasets:
+          - WD50K_triple_04
+          - WD50K_triple_06
+          - WD50K_triple_08
+          ds_datasets_config_path: experiments/configs/training/WD50K.yaml
+          models:
+          - RotatE
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+    outs:
+    - path: experiments/configs/training/training_items/sampled_WD50K_YAGO_combined.yaml
+      md5: 1b58dfdf82822b2952cddd3420119648
+      size: 2654
+  generate_combined_training_items@sampled_FB15K237_YAGO:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key sampled_FB15K237_YAGO --output-path experiments/configs/training/training_items/sampled_FB15K237_YAGO_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        sampled_FB15K237_YAGO:
+          gk_datasets:
+          - YAGO310_c1
+          - YAGO310_c2
+          ds_datasets:
+          - FB15K237_triple_04
+          - FB15K237_triple_06
+          - FB15K237_triple_08
+          ds_datasets_config_path: experiments/configs/training/FB15k237.yaml
+          models:
+          - RotatE
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+    outs:
+    - path: experiments/configs/training/training_items/sampled_FB15K237_YAGO_combined.yaml
+      md5: d8d437510eec0376bc815ad83d3e7a08
+      size: 5339
+  generate_combined_training_items@sampled_FB15K237_ConceptNet:
+    cmd: PYTHONPATH=. python experiments/scripts/generate_combined_training_items.py
+      --generation-config-key sampled_FB15K237_ConceptNet --output-path 
+      experiments/configs/training/training_items/sampled_FB15K237_ConceptNet_combined.yaml
+    deps:
+    - path: experiments/scripts/generate_combined_training_items.py
+      md5: 5ec40b6959b0c7f56f3375779f855d79
+      size: 1806
+    params:
+      experiments/configs/training/generation_config_combined_training_items.yaml:
+        sampled_FB15K237_ConceptNet:
+          gk_datasets:
+          - ConceptNet_c1
+          ds_datasets:
+          - FB15K237_triple_04
+          - FB15K237_triple_06
+          - FB15K237_triple_08
+          ds_datasets_config_path: experiments/configs/training/FB15k237.yaml
+          models:
+          - RotatE
+          - WeightedRotatE
+          alignments:
+          - k_1_extra_relation
+    outs:
+    - path: 
+        experiments/configs/training/training_items/sampled_FB15K237_ConceptNet_combined.yaml
+      md5: c78b3f677774961b7a88570ac939dc12
+      size: 2717
+  download_experiment_results:
+    cmd: PYTHONPATH=. python experiments/scripts/utils/run_results_download.py --project
+      "graph-ml-lab-wust/empowering-small-scale-kg"
+    deps:
+    - path: experiments/scripts/utils/run_results_download.py
+      md5: 4bfb6e6f7c382511bc1e22317b9b43f7
+      size: 578
+    outs:
+    - path: data/experiments_results/results.pkl
+      md5: 5c4c35a1f2511c8a2e3b0f495700adbb
+      size: 319723886
+  generate_paper_plots:
+    cmd: papermill experiments/notebooks/4_analyse_experiments.ipynb data/notebooks/4_analyse_experiments.ipynb
+    deps:
+    - path: data/experiments_results/results.pkl
+      md5: 5c4c35a1f2511c8a2e3b0f495700adbb
+      size: 319723886
+    - path: experiments/notebooks/4_analyse_experiments.ipynb
+      md5: a5e96137eb6eae111531d7cc567fe7b9
+      size: 40161
+    outs:
+    - path: data/notebooks/4_analyse_experiments.ipynb
+      md5: d984338937e6b87ffb0ef74cb378f4ee
+      size: 772033
+    - path: data/plots/experiment_analysis
+      md5: d00dfaab92d03b3ee192454bf832e780.dir
+      size: 1658715
+      nfiles: 4
+  generate_paper_plots_loss:
+    cmd: papermill experiments/notebooks/10_loss.ipynb data/notebooks/10_loss.ipynb
+    deps:
+    - path: data/experiments/FB15K237
+      md5: fb2b180e7993e02f13845e501b8d8f5f.dir
+      size: 7949050104
+      nfiles: 2016
+    - path: data/experiments/WD50K
+      md5: f1feeaa793f67014e590fb1829d70dbe.dir
+      size: 19418565547
+      nfiles: 2100
+    - path: data/experiments/WN18RR
+      md5: 37efa8473392f852fd56afac8293bdb4.dir
+      size: 23519896253
+      nfiles: 2700
+    - path: experiments/notebooks/10_loss.ipynb
+      md5: d37a9ee5566ea2c9b780dcd1a81f2b28
+      size: 8881
+    outs:
+    - path: data/notebooks/10_loss.ipynb
+      md5: 8e501a882a783c21b158c9688cde8f39
+      size: 118403
+    - path: data/plots/loss_analysis
+      md5: 0c74efc1cc3cb7d7d96b2a54a9f191db.dir
+      size: 343709
+      nfiles: 1
+  execute_notebook_dataset_stats:
+    cmd: papermill experiments/notebooks/2_dataset_stats.ipynb data/notebooks/2_dataset_stats.ipynb
+    deps:
+    - path: experiments/notebooks/2_dataset_stats.ipynb
+      md5: 1532ba77ce2d02ad847da14ca1f4da35
+      size: 9205
+    outs:
+    - path: data/notebooks/2_dataset_stats.ipynb
+      md5: 0faa2bef676e530887d2aec6a47f3e40
+      size: 147391
+  execute_notebook_ablation_concatenation:
+    cmd: papermill experiments/notebooks/14_ablation_concatenation.ipynb data/notebooks/14_ablation_concatenation.ipynb
+    deps:
+    - path: experiments/notebooks/14_ablation_concatenation.ipynb
+      md5: 5d65c9e99928e44d266a5f2d980cce84
+      size: 5016
+    outs:
+    - path: data/notebooks/14_ablation_concatenation.ipynb
+      md5: 8c3e9c66115b2833dbacf69a5717173b
+      size: 6324968

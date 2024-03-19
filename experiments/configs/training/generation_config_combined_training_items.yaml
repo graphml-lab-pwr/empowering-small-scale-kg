@@ -1,0 +1,118 @@
+WN18RR:
+  gk_datasets: [ "WN18RR" ]
+  ds_datasets:
+    - 'WN18RR_node_04'
+    - 'WN18RR_node_06'
+    - 'WN18RR_node_08'
+    - 'WN18RR_relation_04'
+    - 'WN18RR_relation_06'
+    - 'WN18RR_relation_08'
+    - 'WN18RR_triple_04'
+    - 'WN18RR_triple_06'
+    - 'WN18RR_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+  models: [ "RotatE" ]
+  alignments: [ 'k_1_extra_relation', 'k_2_extra_relation', 'k_3_extra_relation']
+
+weighted_WN18RR:
+  gk_datasets: [ "WN18RR" ]
+  ds_datasets:
+    - 'WN18RR_node_04'
+    - 'WN18RR_node_06'
+    - 'WN18RR_node_08'
+    - 'WN18RR_relation_04'
+    - 'WN18RR_relation_06'
+    - 'WN18RR_relation_08'
+    - 'WN18RR_triple_04'
+    - 'WN18RR_triple_06'
+    - 'WN18RR_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+  models: [ "WeightedRotatE"]
+  alignments: ['k_1_extra_relation', 'k_2_extra_relation', 'k_3_extra_relation']
+
+FB15K237_FB15K237:
+  gk_datasets: [ "FB15K237" ]
+  ds_datasets:
+    - 'FB15K237_relation_04'
+    - 'FB15K237_relation_06'
+    - 'FB15K237_relation_08'
+    - 'FB15K237_triple_04'
+    - 'FB15K237_triple_06'
+    - 'FB15K237_triple_08'
+  ds_datasets_config_path: experiments/configs/training/FB15k237.yaml
+  models: [ "RotatE", "WeightedRotatE"]
+  alignments: ['k_1_extra_relation', 'k_2_extra_relation', 'k_3_extra_relation']
+
+WD50K_WD50K:
+  gk_datasets: [ "WD50K" ]
+  ds_datasets:
+    - 'WD50K_node_08'
+    - 'WD50K_relation_04'
+    - 'WD50K_relation_06'
+    - 'WD50K_relation_08'
+    - 'WD50K_triple_04'
+    - 'WD50K_triple_06'
+    - 'WD50K_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WD50K.yaml
+  models: [ "RotatE", "WeightedRotatE"]
+  alignments: ['k_1_extra_relation', 'k_2_extra_relation', 'k_3_extra_relation']
+
+sampled_WD50K_FB15K237:
+  gk_datasets: [ "FB15K237", "FB15K237_c1" ]
+  ds_datasets:
+    - 'WD50K_triple_04'
+    - 'WD50K_triple_06'
+    - 'WD50K_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WD50K.yaml
+  models: [ "RotatE", "WeightedRotatE"]
+  alignments: ['k_1_extra_relation']
+
+sampled_WD50K_YAGO:
+  gk_datasets: [ "YAGO310_c1"]
+  ds_datasets:
+    - 'WD50K_triple_04'
+    - 'WD50K_triple_06'
+    - 'WD50K_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WD50K.yaml
+  models: [ "RotatE", "WeightedRotatE" ]
+  alignments: ['k_1_extra_relation']
+
+sampled_WN18RR_FB15K237:
+  gk_datasets: [ "FB15K237" ]
+  ds_datasets:
+    - 'WN18RR_triple_04'
+    - 'WN18RR_triple_06'
+    - 'WN18RR_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+  models: [ "RotatE", "WeightedRotatE"]
+  alignments: ['k_1_extra_relation' ]
+
+sampled_WN18RR_ConceptNet:
+  gk_datasets: [ "ConceptNet_c1"]
+  ds_datasets:
+    - 'WN18RR_triple_04'
+    - 'WN18RR_triple_06'
+    - 'WN18RR_triple_08'
+  ds_datasets_config_path: experiments/configs/training/WN18RR.yaml
+  models: [ "RotatE", "WeightedRotatE"]
+  alignments: ['k_1_extra_relation' ]
+
+sampled_FB15K237_ConceptNet:
+  gk_datasets: [ "ConceptNet_c1"]
+  ds_datasets:
+    - 'FB15K237_triple_04'
+    - 'FB15K237_triple_06'
+    - 'FB15K237_triple_08'
+  ds_datasets_config_path: experiments/configs/training/FB15k237.yaml
+  models: [ "RotatE", "WeightedRotatE"]
+  alignments: ['k_1_extra_relation' ]
+
+sampled_FB15K237_YAGO:
+  gk_datasets: [ "YAGO310_c1", "YAGO310_c2"]
+  ds_datasets:
+    - 'FB15K237_triple_04'
+    - 'FB15K237_triple_06'
+    - 'FB15K237_triple_08'
+  ds_datasets_config_path: experiments/configs/training/FB15k237.yaml
+  models: [ "RotatE", "WeightedRotatE"]
+  alignments: ['k_1_extra_relation' ]

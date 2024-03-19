@@ -1,0 +1,38 @@
+FB15K237: &FB15K237
+  dataset: FB15K237
+
+FB15K237_triple: &FB15K237_triple
+  <<: *FB15K237
+  sampling: triple
+
+FB15K237_relation: &FB15K237_relation
+  <<: *FB15K237
+  sampling: relation
+
+# TRIPLE
+
+FB15K237_triple_04:
+  <<: *FB15K237_triple
+  p: 0.4
+
+FB15K237_triple_06:
+  <<: *FB15K237_triple
+  p: 0.6
+
+FB15K237_triple_08:
+  <<: *FB15K237_triple
+  p: 0.8
+
+# RELATION
+
+FB15K237_relation_04:
+  <<: *FB15K237_relation
+  p: 0.4
+
+FB15K237_relation_06:
+  <<: *FB15K237_relation
+  p: 0.6
+
+FB15K237_relation_08:
+  <<: *FB15K237_relation
+  p: 0.8

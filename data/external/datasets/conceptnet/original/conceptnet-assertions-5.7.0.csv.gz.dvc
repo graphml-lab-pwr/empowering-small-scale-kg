@@ -1,0 +1,4 @@
+outs:
+- md5: 44365622fa268fa0ccab22c7b406459f
+  size: 497963447
+  path: conceptnet-assertions-5.7.0.csv.gz
